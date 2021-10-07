@@ -15,7 +15,7 @@ const createModal = () => {
     .map((el) => createNodeWithId(el.tag, el.id))
     .map((el) => {
       el.id === "modal-close-button" &&
-        el.addEventListener("click", () => makeModalInvisible());
+        el.addEventListener("click", () => hideModal());
       modalContainer.append(el);
     });
 
@@ -52,9 +52,15 @@ const unsetModalData = () => {
   setAttribute(img, "src", "");
 };
 
-const makeModalInvisible = () => {
+const displayModal = (data) => {
+  setModalData(data);
+  (!modalContainer.classList.contains("modal-visible")) &&
+    modalContainer.classList.add("modal-visible");
+};
+
+const hideModal = () => {
   modalContainer.classList.remove("modal-visible");
   unsetModalData();
 };
 
-export { createModal, setModalData };
+export { createModal, displayModal };

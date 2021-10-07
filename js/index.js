@@ -1,5 +1,5 @@
 import { dates } from "./data.js";
-import { createModal, setModalData } from "./modal.js";
+import { createModal, displayModal } from "./modal.js";
 import { createNodeWithClass } from "./utils.js";
 
 const container = document.querySelector(".timeline");
@@ -39,7 +39,7 @@ const mapDatesToTemplate = () => {
   dates.map((date) =>
     createSummaryCards(date).map((el) => {
       el.classList.contains("timeline-item-more-info") &&
-        el.addEventListener("click", () => setModalData(date));
+        el.addEventListener("click", () => displayModal(date));
       return summaryContainer.append(el);
     })
   );
