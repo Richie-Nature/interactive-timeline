@@ -1,13 +1,24 @@
-import { setAttribute, createNodeWithId, setContent } from "./utils.js";
+import {
+  setAttribute,
+  createNodeWithId,
+  setContent,
+  createNodeWithClass,
+} from "./utils.js";
 
 const body = document.querySelector("body");
+
 const modalContainer = createNodeWithId("div", "modal-container");
+modalContainer.classList.add("fade-in");
+
+const closeIcon = createNodeWithClass("i", "fas"); //already tired, but should change this
+closeIcon.classList.add("fa-times");
+
 const modalTags = [
-  { tag: "span", id: "modal-date" },
-  { tag: "h3", id: "modal-title" },
-  { tag: "section", id: "modal-full-description" },
   { tag: "button", id: "modal-close-button" },
+  { tag: "h3", id: "modal-title" },
   { tag: "img", id: "modal-image" },
+  { tag: "section", id: "modal-full-description" },
+  { tag: "span", id: "modal-date" },
 ];
 
 const createModal = () => {
@@ -20,6 +31,7 @@ const createModal = () => {
     });
 
   body.appendChild(modalContainer);
+  document.querySelector("#modal-close-button").appendChild(closeIcon);
 };
 
 const setModalData = (data) => {
@@ -27,13 +39,12 @@ const setModalData = (data) => {
     const date = document.querySelector("#modal-date");
     const title = document.querySelector("#modal-title");
     const description = document.querySelector("#modal-full-description");
-    const button = document.querySelector("#modal-close-button");
     const img = document.querySelector("#modal-image");
 
     setContent(date, data.date);
     setContent(title, data.title);
     setContent(description, data.fullDescription);
-    setContent(button, "Close");
+
     setAttribute(img, "src", data.image);
   } catch (error) {
     console.error("Could not set modal data", error);
@@ -60,6 +71,8 @@ const displayModal = (data) => {
 
 const hideModal = () => {
   modalContainer.classList.remove("modal-visible");
+  modalContainer.classList.replace("fade-in", "fade-out");
+
   unsetModalData();
 };
 
