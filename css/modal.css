@@ -29,6 +29,7 @@
   border-radius: 5px;
   padding: 1em 2em 2em;
   background: #fff;
+  opacity: 1;
   box-shadow: 0 8px 12px rgba(132, 124, 108, 0.1);
 }
 
