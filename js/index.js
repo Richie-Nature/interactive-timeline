@@ -1,4 +1,5 @@
 import { dates } from "./data.js";
+import { createModal, setModalData } from "./modal.js";
 import { createNodeWithClass } from "./utils.js";
 
 const container = document.querySelector(".timeline");
@@ -9,7 +10,6 @@ const summaryCard = [
   { tag: "p", class: "timeline-item-summary", content: "" },
   { tag: "button", class: "timeline-item-more-info", content: "" },
 ];
-
 
 const createSummaryCards = (date) => {
   return summaryCard
@@ -35,11 +35,21 @@ const getNodeContent = (data, index) => {
   }
 };
 
-(function () {
+const mapDatesToTemplate = () => {
   dates.map((date) =>
-    createSummaryCards(date).map((el) => summaryContainer.append(el))
+    createSummaryCards(date).map((el) => {
+      el.classList.contains("timeline-item-more-info") &&
+        el.addEventListener("click", () => setModalData(date));
+      return summaryContainer.append(el);
+    })
   );
+};
+
+const appendSummaryContainerToBody = () =>
   container.appendChild(summaryContainer);
+
+(function () {
+  mapDatesToTemplate();
+  appendSummaryContainerToBody();
+  createModal();
 })();
-
-
