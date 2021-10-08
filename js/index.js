@@ -3,12 +3,12 @@ import { createModal, displayModal } from "./modal.js";
 import { createNodeWithClass } from "./utils.js";
 
 const container = document.querySelector(".timeline");
-const summaryContainer = createNodeWithClass("div", "timeline-item");
 const summaryCard = [
   { tag: "h2", class: "timeline-item-title", content: "" },
   { tag: "span", class: "timeline-item-date", content: "" },
   { tag: "p", class: "timeline-item-summary", content: "" },
   { tag: "button", class: "timeline-item-more-info", content: "" },
+  { tag: "div", class: "timeline-item", content: "" },
 ];
 
 const createSummaryCards = (date) => {
@@ -36,20 +36,27 @@ const getNodeContent = (data, index) => {
 };
 
 const mapDatesToTemplate = () => {
+  let summaryContainer;
   dates.map((date) =>
     createSummaryCards(date).map((el) => {
+      el.classList.contains("timeline-item") && (summaryContainer = el);
+
       el.classList.contains("timeline-item-more-info") &&
         el.addEventListener("click", () => displayModal(date));
-      return summaryContainer.append(el);
+
+      if (summaryContainer && !el.classList.contains("timeline-item")) {
+        summaryContainer && summaryContainer.append(el);
+        appendSummaryContainerToBody(summaryContainer);
+      }
     })
   );
 };
 
-const appendSummaryContainerToBody = () =>
-  container.appendChild(summaryContainer);
+const appendSummaryContainerToBody = (summaryContainer) => {
+  if (summaryContainer) container.appendChild(summaryContainer);
+};
 
 (function () {
   mapDatesToTemplate();
-  appendSummaryContainerToBody();
   createModal();
 })();

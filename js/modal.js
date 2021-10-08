@@ -65,13 +65,14 @@ const unsetModalData = () => {
 
 const displayModal = (data) => {
   setModalData(data);
+  modalContainer.classList.replace("fade-out", "fade-in");
   (!modalContainer.classList.contains("modal-visible")) &&
     modalContainer.classList.add("modal-visible");
 };
 
 const hideModal = () => {
-  modalContainer.classList.remove("modal-visible");
   modalContainer.classList.replace("fade-in", "fade-out");
+  modalContainer.classList.remove("modal-visible");
 
   unsetModalData();
 };
