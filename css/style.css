@@ -7,9 +7,117 @@ body {
   font-family: "Urbanist", sans-serif;
   background: #000000;
   color: #fff;
+  /* border: 1px solid red; */
 }
 
 button {
   cursor: pointer;
 }
 
+.timeline {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 2em 0 2em 0;
+  margin: 2em 0em;
+  /* border: 1px solid green; */
+}
+
+/* Timeline vertical bar */
+.timeline::before {
+  content: "";
+  border: 2px solid #ff9c00;
+  margin-left: 50%;
+  display: inline-block;
+  height: inherit;
+  position: absolute;
+  top: 10px;
+  bottom: 0;
+  border-top-left-radius: 50%;
+}
+
+/* Ball at timeline vertical bar's lower end */
+.timeline::after {
+  content: "";
+  display: block;
+  height: 20px;
+  width: 20px;
+  background: #ff9c00;
+  border-radius: 50%;
+  position: absolute;
+  margin-left: 48.25%;
+  bottom: 0;
+}
+
+.timeline-item {
+  /* border: 1px solid #ff9c00; */
+  width: 50%;
+}
+
+.timeline-item:nth-of-type(1n) {
+  text-align: right;
+  width: 30%;
+  margin-left: calc(20% - 1.5em);
+  position: relative;
+  /* display: flex;
+  flex-direction: column;
+  align-items: flex-end; */
+  /* padding: 0 1em 0 0; */
+}
+
+/* Horizontal bar connecting to timeline vertical bar */
+.timeline-item:nth-of-type(1n)::after {
+  content: "";
+  display: block;
+  border: 2px solid #ff9c00;
+  width: 1.3em;
+  position: absolute;
+  top: 50%;
+  right: -1.5em;
+}
+
+.timeline-item:nth-of-type(1n) .timeline-item-more-info {
+    position: absolute;
+    top: 15%;
+    right: 0;
+    padding: 2em;
+    border: 0;
+    border-radius: 5px;
+    background: #ff9c00;
+}
+
+/* .timeline-item:nth-of-type(1n) *:not(.timeline-item-more-info) {
+  padding: 0;
+  margin-right: 4em;
+  border: 1px solid purple;
+} */
+
+.timeline-item:nth-of-type(2n) {
+  text-align: left;
+  margin-left: calc(50% + 1.5em);
+  width: 30%;
+}
+
+.timeline-item:nth-of-type(2n)::after {
+  left: -1.5em;
+}
+
+.timeline-item:nth-of-type(2n) .timeline-item-more-info {
+    left: 0;
+}
+
+@media screen and (min-width: 760px) and (max-width: 900px) {
+  .timeline::after {
+    margin-left: 49%;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .timeline {
+    margin: 2em 1em 2em 1em;
+  }
+
+  .timeline::after {
+    margin-left: 49.45%;
+  }
+}

@@ -29,6 +29,7 @@
   border-radius: 5px;
   padding: 1em 2em 2em;
   background: #fff;
+  color: #000;
   /* opacity: 1; */
   box-shadow: 0 8px 12px rgba(132, 124, 108, 0.1);
 }
@@ -48,6 +49,7 @@
 #modal-container img {
   height: 25vh;
   width: 100%;
+  background: #eee;
 }
 
 #modal-container #modal-full-description {

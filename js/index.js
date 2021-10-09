@@ -44,7 +44,7 @@ const mapDatesToTemplate = () => {
       el.classList.contains("timeline-item-more-info") &&
         el.addEventListener("click", () => displayModal(date));
 
-      if (summaryContainer && !el.classList.contains("timeline-item")) {
+      if (!el.classList.contains("timeline-item")) {
         summaryContainer && summaryContainer.append(el);
         appendSummaryContainerToBody(summaryContainer);
       }
