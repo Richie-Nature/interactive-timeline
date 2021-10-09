@@ -29,7 +29,7 @@ const getNodeContent = (data, index) => {
     case 2:
       return data.summary;
     case 3:
-      return "Read more";
+      return "See details";
     default:
       return "";
   }

@@ -7,7 +7,6 @@ body {
   font-family: "Urbanist", sans-serif;
   background: #000000;
   color: #fff;
-  /* border: 1px solid red; */
 }
 
 button {
@@ -20,7 +19,6 @@ button {
   position: relative;
   padding: 2em 0 2em 0;
   margin: 2em 0em;
-  /* border: 1px solid green; */
 }
 
 /* Timeline vertical bar */
@@ -56,13 +54,9 @@ button {
 
 .timeline-item:nth-of-type(1n) {
   text-align: right;
-  width: 30%;
-  margin-left: calc(20% - 1.5em);
+  width: 50%;
+  /* margin-left: calc(20% - 1.5em); */
   position: relative;
-  /* display: flex;
-  flex-direction: column;
-  align-items: flex-end; */
-  /* padding: 0 1em 0 0; */
 }
 
 /* Horizontal bar connecting to timeline vertical bar */
@@ -76,55 +70,71 @@ button {
   right: -1.5em;
 }
 
-.timeline-item:nth-of-type(1n) .timeline-item-more-info {
-    position: absolute;
-    top: 15%;
-    right: 0;
-    padding: 2em;
-    border: 0;
-    border-radius: 5px;
-    background: #ff9c00;
+/* Big square that I do not yet know what to put there */
+.timeline-item:nth-of-type(1n)::before {
+  content: url("../img/cupcake-svgrepo-com.svg");
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: calc(50% - 2em); /*subtracting half of the height */
+  height: 4em;
+  width: 4em;
+  border: 0;
+  border-radius: 5px;
+  background: #ff9c00;
 }
 
-/* HACKKKKK */
-.timeline-item:nth-of-type(1n) *:not(.timeline-item-more-info) {
-  padding: 0;
-  margin-right: 10em;
-}
-
-.timeline-item:nth-of-type(1n) .timeline-item-title {
-  margin-right: 6.5em;
+.timeline-item-title {
   color: red;
   font-weight: 900;
 }
 
-.timeline-item:nth-of-type(2n) *:not(.timeline-item-more-info) {
-  margin-left: 10em;
-}
-
-.timeline-item:nth-of-type(1n) .timeline-item-title {
-  margin-left: 6.5em;
-}
-/* :) */
-
 .timeline-item-date {
-    font-weight: 900;
-    color: green;
+  font-weight: 900;
+  color: green;
 }
 
 .timeline-item:nth-of-type(2n) {
   text-align: left;
-  margin-left: calc(50% + 1.5em);
-  width: 30%;
+  /* margin-left: calc(50% + 1.5em); */
+  margin-left: 50%;
+  width: 50%;
 }
 
 .timeline-item:nth-of-type(2n)::after {
   left: -1.5em;
 }
 
-.timeline-item:nth-of-type(2n) .timeline-item-more-info {
-    left: 0;
+.timeline-item:nth-of-type(2n)::before {
+  left: 0;
 }
+
+.timeline-item-more-info {
+  background: unset;
+  border: 1px dashed #ff9c00;
+  color: #FFB033;
+  font-weight: 300;
+  padding: 1em;
+  border-radius: 1em;
+}
+
+/* Some hack to move timeline content away from ::before :) */
+.timeline-item:nth-of-type(1n) *:not(.timeline-item-title) {
+  margin-right: 5em;
+}
+
+.timeline-item:nth-of-type(1n) .timeline-item-title {
+  margin-right: 3.2em;
+}
+
+.timeline-item:nth-of-type(2n) *:not(.timeline-item-title) {
+  margin-left: 5em;
+}
+
+.timeline-item:nth-of-type(2n) .timeline-item-title {
+  margin-left: 3.2em;
+}
+/* end hack :) */
 
 @media screen and (min-width: 760px) and (max-width: 900px) {
   .timeline::after {
@@ -139,5 +149,13 @@ button {
 
   .timeline::after {
     margin-left: 49.45%;
+  }
+  .timeline-item:nth-of-type(1n) {
+    width: 30%;
+    margin-left: calc(20% - 1.5em);
+  }
+  .timeline-item:nth-of-type(2n) {
+    margin-left: calc(50% + 1.5em);
+    width: 30%;
   }
 }
