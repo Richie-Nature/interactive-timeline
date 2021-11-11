@@ -10,7 +10,7 @@ const body = document.querySelector("body");
 const modalContainer = createNodeWithId("div", "modal-container");
 modalContainer.classList.add("fade-in");
 
-const closeIcon = createNodeWithClass("i", "fas"); //already tired, but should change this
+const closeIcon = createNodeWithClass("i", "fas");
 closeIcon.classList.add("fa-times");
 
 const modalTags = [
